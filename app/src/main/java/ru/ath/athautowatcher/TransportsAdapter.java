@@ -14,10 +14,15 @@ import ru.ath.athautowatcher.data.Transport;
 
 public class TransportsAdapter extends RecyclerView.Adapter<TransportsAdapter.TransportsViewHolder> {
 
-    private ArrayList<Transport> transports;
+    private ArrayList<Transport> transports = new ArrayList<>();
+    private OnTransportClickListener onTransportClickListener;
 
-    public TransportsAdapter(ArrayList<Transport> transports) {
-        this.transports = transports;
+    interface OnTransportClickListener {
+        void onTransportClick(int position);
+    }
+
+    public void setOnTransportClickListener(OnTransportClickListener onTransportClickListener) {
+        this.onTransportClickListener = onTransportClickListener;
     }
 
     // привязка макета элемента к адаптеру
@@ -32,9 +37,9 @@ public class TransportsAdapter extends RecyclerView.Adapter<TransportsAdapter.Tr
     @Override
     public void onBindViewHolder(@NonNull TransportsViewHolder holder, int position) {
         Transport tr = transports.get(position);
-        holder.textViewNm.setText(tr.getWlnnm());
+        holder.textViewRegplate.setText(tr.getRegistrationplate());
         holder.textViewModel.setText(tr.getModel());
-        holder.textViewAtlocation.setText(tr.getAtlocation());
+        holder.textViewAutocloumnDepart.setText(tr.getAtautocol() + " - " + tr.getAtdepartment());
         holder.textViewAtinvnom.setText(tr.getAtinvnom());
     }
 
@@ -43,21 +48,36 @@ public class TransportsAdapter extends RecyclerView.Adapter<TransportsAdapter.Tr
         return transports.size();
     }
 
+
     class TransportsViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewNm;
+        private TextView textViewRegplate;
         private TextView textViewModel;
-        private TextView textViewAtlocation;
+        private TextView textViewAutocloumnDepart;
         private TextView textViewAtinvnom;
 
 
         public TransportsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewNm = itemView.findViewById(R.id.textViewNm);
+            textViewRegplate = itemView.findViewById(R.id.textViewRegPlate);
             textViewModel = itemView.findViewById(R.id.textViewModel);
-            textViewAtlocation = itemView.findViewById(R.id.textViewAtlocation);
+            textViewAutocloumnDepart = itemView.findViewById(R.id.textViewAutocloumnDepart);
             textViewAtinvnom = itemView.findViewById(R.id.textViewAtinvnom);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onTransportClickListener != null) {
+                        onTransportClickListener.onTransportClick(getAdapterPosition());
+                    }
+                }
+            });
         }
+    }
+
+    public void setTransports(ArrayList<Transport> trArr) {
+        this.transports = trArr;
+        notifyDataSetChanged();
     }
 }
