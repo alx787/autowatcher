@@ -9,12 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ru.ath.athautowatcher.data.Transport;
 
 public class TransportsAdapter extends RecyclerView.Adapter<TransportsAdapter.TransportsViewHolder> {
 
-    private ArrayList<Transport> transports = new ArrayList<>();
+    private List<Transport> transports = new ArrayList<>();
     private OnTransportClickListener onTransportClickListener;
 
     interface OnTransportClickListener {
@@ -76,7 +77,11 @@ public class TransportsAdapter extends RecyclerView.Adapter<TransportsAdapter.Tr
         }
     }
 
-    public void setTransports(ArrayList<Transport> trArr) {
+    public List<Transport> getTransports() {
+        return transports;
+    }
+
+    public void setTransports(List<Transport> trArr) {
         this.transports = trArr;
         notifyDataSetChanged();
     }

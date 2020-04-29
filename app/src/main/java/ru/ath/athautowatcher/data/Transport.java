@@ -1,6 +1,11 @@
 package ru.ath.athautowatcher.data;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "transport")
 public class Transport {
+    @PrimaryKey
     private int id;
     private String wlnid;
     private String wlnnm;
