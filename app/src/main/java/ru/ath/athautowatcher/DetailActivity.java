@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import ru.ath.athautowatcher.utils.NetworkUtils;
+// import ru.ath.athautowatcher.utils.NetworkUtils;
 
 public class DetailActivity extends AppCompatActivity implements OnMapReadyCallback{
 
