@@ -16,11 +16,19 @@ import java.util.concurrent.ExecutionException;
 public class NetworkUtils {
     private static final String BASE_URL = "http://192.168.1.122:8080/restprox/";
     private static final String URL_GET_ALL_OBJS = "wl/getobject/db/all";
+    private static final String URL_GET_LASTPOS = "track/getlastpos/__invnom__";
 
     public static JsonObject getJsonAllObjects() {
         String url = BASE_URL + URL_GET_ALL_OBJS;
         return getJsonFromNetwork(url);
     }
+
+    public static JsonObject getJsonLastPosition(String invnom) {
+        String url = BASE_URL + URL_GET_LASTPOS.replace("__invnom__", invnom);
+        return getJsonFromNetwork(url);
+    }
+
+
 
     private static JsonObject getJsonFromNetwork(String url) {
         JsonObject result = null;

@@ -66,8 +66,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTransportClick(int position) {
                 Transport tr = adapter.getTransports().get(position);
+
+                // запросим на сервере последнее место положение
+                JsonObject jsonObject = NetworkUtils.getJsonLastPosition(tr.getAtinvnom());
+                if (jsonObject == null) {
+//                    Toast.makeText(this, "Ошибка, не получен ответ от сервера", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (jsonObject.has("status")) {
+                    if (jsonObject.get("status").getAsString().equals("error")) {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+
+                JsonObject contentJson = jsonObject.get("content").getAsJsonObject();
+
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                intent.putExtra("id", tr.getId());
+
+                intent.putExtra("regnom", tr.getRegistrationplate());
+                intent.putExtra("x", contentJson.get("x").getAsString());
+                intent.putExtra("y", contentJson.get("y").getAsString());
+
                 startActivity(intent);
 
             }
