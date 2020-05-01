@@ -21,7 +21,7 @@ import com.google.gson.JsonObject;
 
 public class DetailActivity extends AppCompatActivity implements OnMapReadyCallback{
 
-    private Float fX;
+    private Float   fX;
     private Float fY;
     private String regnom;
 

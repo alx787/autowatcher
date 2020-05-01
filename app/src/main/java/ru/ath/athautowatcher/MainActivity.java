@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
                 JsonObject contentJson = jsonObject.get("content").getAsJsonObject();
 
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+//                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                Intent intent = new Intent(MainActivity.this, YandexActivity.class);
 
                 intent.putExtra("regnom", tr.getRegistrationplate());
                 intent.putExtra("x", contentJson.get("x").getAsString());
