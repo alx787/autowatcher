@@ -43,7 +43,7 @@ public class YandexActivity extends AppCompatActivity {
                         new CameraPosition(new Point(fY, fX), 11.0f, 0.0f, 0.0f),
                         new Animation(Animation.Type.SMOOTH, 0),
                         null);
-                mapView.getMap().getMapObjects().addPlacemark(new Point(fY, fX));
+                mapView.getMap().getMapObjects().addPlacemark(new Point(fY, fX), ImageProvider.fromResource(this, R.drawable.map_marker_icon_32_32));
 
             } catch (Exception e) {
                 finish();

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 // запросим на сервере последнее место положение
                 JsonObject jsonObject = NetworkUtils.getJsonLastPosition(tr.getAtinvnom());
                 if (jsonObject == null) {
-//                    Toast.makeText(this, "Ошибка, не получен ответ от сервера", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Ошибка, не получен ответ от сервера", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -105,16 +105,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    private void downloadData() {
-//        JsonObject jsonObject = NetworkUtils.getJsonAllObjects();
-//        if (jsonObject != null) {
-//            transports = JsonUtils.getTransportListFromJson(jsonObject);
-//        } else {
-//            Toast.makeText(this,"Ошибка загрузки объектов", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        // привязываем адаптер
-//        final TransportsAdapter adapter = new TransportsAdapter();
-//        adapter.setTransports(transports);
-//    }
 }
