@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String filterInvnom;
     private String filterAutocol;
+    private String filterDepartment;
 
 
     @Override
@@ -54,23 +55,30 @@ public class MainActivity extends AppCompatActivity {
 
                 if (intent.hasExtra("invnom")) {
                     filterInvnom = intent.getStringExtra("invnom");
-                    if (!filterInvnom.isEmpty()) {
-                        filtered = true;
+                    if (filterInvnom.isEmpty()) {
+                        filterInvnom = null;
                     }
                 }
 
                 if (intent.hasExtra("autocol")) {
                     filterAutocol = intent.getStringExtra("autocol");
-                    if (!filterAutocol.isEmpty()) {
-                        filtered = true;
+                    if (filterAutocol.isEmpty()) {
+                        filterAutocol = null;
                     }
                 }
 
+                if (intent.hasExtra("department")) {
+                    filterDepartment = intent.getStringExtra("department");
+                    if (filterDepartment.isEmpty()) {
+                        filterDepartment = null;
+                    }
+                }
 
+                if (filterInvnom != null || filterAutocol != null || filterDepartment != null) {
+                    filtered = true;
+                }
             }
-
-
-            Toast.makeText(this,"+", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,"+", Toast.LENGTH_SHORT).show();
         }
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
@@ -113,9 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (jsonObject.has("status")) {
                     if (jsonObject.get("status").getAsString().equals("error")) {
+                        Toast.makeText(MainActivity.this, "Ошибка, ошибка в ответе сервера", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 } else {
+                    Toast.makeText(MainActivity.this, "Ошибка, нет данных", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -135,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
         LiveData<List<Transport>> transportsFromLiveData;
         if (filtered) {
-            Log.i("myres", filterInvnom);
-            transportsFromLiveData = viewModel.getTransportByFilter(filterInvnom, filterAutocol);
+//            Log.i("myres", filterInvnom);
+            transportsFromLiveData = viewModel.getTransportByFilter(filterInvnom, filterAutocol, filterDepartment);
         } else {
             transportsFromLiveData = viewModel.getTransport();
         }

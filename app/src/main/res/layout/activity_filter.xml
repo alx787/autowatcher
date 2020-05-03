@@ -68,6 +68,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAutocol" />
 
+    <TextView
+        android:id="@+id/textViewDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Подразделение"
+        android:textColor="#C2E7D9"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAutocol" />
+
+    <Spinner
+        android:id="@+id/spinnerDepartment"
+        android:layout_width="285dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#160337"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
+
     <Button
         android:id="@+id/buttonOk"
         android:layout_width="wrap_content"
@@ -77,7 +99,6 @@
         android:text="@android:string/ok"
         android:onClick="onClickFilter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAutocol" />
-
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDepartment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

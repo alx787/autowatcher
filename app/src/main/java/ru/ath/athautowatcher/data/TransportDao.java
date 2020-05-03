@@ -15,8 +15,13 @@ public interface TransportDao {
     @Query("SELECT * FROM transport")
     LiveData<List<Transport>> getAllTransports();
 
-    @Query("SELECT * FROM transport WHERE (:invnom IS NULL OR atinvnom LIKE :invnom) AND (:autocol IS NULL OR  atautocol LIKE :autocol)")
-    LiveData<List<Transport>> getTransportByFilter(@Nullable String invnom, @Nullable String autocol);
+    @Query(
+            "SELECT * FROM transport " +
+                    "WHERE (:invnom IS NULL OR atinvnom LIKE :invnom) " +
+                    "AND (:autocol IS NULL OR  atautocol = :autocol) " +
+                    "AND (:department IS NULL OR  atdepartment = :department)"
+    )
+    LiveData<List<Transport>> getTransportByFilter(@Nullable String invnom, @Nullable String autocol, @Nullable String department);
 
     @Query("SELECT * FROM transport WHERE id == :id")
     Transport getTransportById(int id);
@@ -30,8 +35,13 @@ public interface TransportDao {
     @Insert
     void insertTransport(Transport transport);
 
+    // автоколонны
     @Query("SELECT DISTINCT(t.atautocol) FROM transport t ORDER BY atautocol")
     List<String> getAllAutocols();
+
+    // подразделения в автоколонне
+    @Query("SELECT DISTINCT(t.atdepartment) FROM transport t WHERE t.atautocol = :autocol ORDER BY atdepartment")
+    List<String> getDepartments(String autocol);
 
 
 //    @Update

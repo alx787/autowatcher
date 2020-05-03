@@ -52,8 +52,8 @@ public class MainViewModel extends AndroidViewModel {
         return transport;
     }
 
-    public LiveData<List<Transport>> getTransportByFilter(String invnom, String autocol) {
-        return database.transportDao().getTransportByFilter(invnom, autocol);
+    public LiveData<List<Transport>> getTransportByFilter(String invnom, String autocol, String department) {
+        return database.transportDao().getTransportByFilter(invnom, autocol, department);
     }
 
     public List<String> getAllAutoCols() {
@@ -67,6 +67,16 @@ public class MainViewModel extends AndroidViewModel {
         return new ArrayList<String>();
     }
 
+    public List<String> getDepartments(String autocol) {
+        try {
+            return new GetDepartmentsTask().execute(autocol).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<String>();
+    }
 
 
 
@@ -114,4 +124,12 @@ public class MainViewModel extends AndroidViewModel {
             return database.transportDao().getAllAutocols();
         }
     }
+
+    private static class GetDepartmentsTask extends AsyncTask<String, Void, List<String>> {
+        @Override
+        protected List<String> doInBackground(String... strings) {
+            return database.transportDao().getDepartments(strings[0]);
+        }
+    }
+
 }
