@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -31,11 +32,42 @@ public class MainActivity extends AppCompatActivity {
     private TransportsAdapter adapter;
     private MainViewModel viewModel;
 
+    private boolean filtered; // признак фильтрации
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        filtered = false;
+
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            // проверяем фильтрацию
+//            if (intent.hasExtra("setfilter")) {
+//                String invnom = null;
+//                String autocol = null;
+//
+//                if (intent.hasExtra("invnom")) {
+//                    invnom = intent.getStringExtra("invnom");
+//                    if (!invnom.isEmpty()) {
+//                        filtered = true;
+//                    }
+//                }
+//
+//                if (intent.hasExtra("autocol")) {
+//                    autocol = intent.getStringExtra("autocol");
+//                    if (!autocol.isEmpty()) {
+//                        filtered = true;
+//                    }
+//                }
+//
+//
+//            }
+//
+//
+//            Toast.makeText(this,"+", Toast.LENGTH_SHORT).show();
+//        }
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
@@ -43,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         JsonObject jsonObject = NetworkUtils.getJsonAllObjects();
         if (jsonObject != null) {
+//            Toast.makeText(this,"++", Toast.LENGTH_SHORT).show();
             transports = JsonUtils.getTransportListFromJson(jsonObject);
             if (transports != null && !transports.isEmpty()) {
                 viewModel.deleteAllTransport();
@@ -105,4 +138,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void onClickFilter(View view) {
+        Intent intent = new Intent(this, FilterActivity.class);
+        startActivity(intent);
+    }
 }

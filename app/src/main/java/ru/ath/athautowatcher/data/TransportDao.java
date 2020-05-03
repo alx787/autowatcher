@@ -1,5 +1,6 @@
 package ru.ath.athautowatcher.data;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -25,6 +26,10 @@ public interface TransportDao {
 
     @Insert
     void insertTransport(Transport transport);
+
+//    @Query("SELECT * FROM transport WHERE (:invnom IS NULL OR atinvnom LIKE :invnom) AND (:autocol IS NULL OR  atautocol LIKE :autocol)")
+//    Transport getTransportByFilter(@Nullable String invnom, @Nullable String autocol);
+
 
 //    @Update
 //    void updateTransport(Transport transport);

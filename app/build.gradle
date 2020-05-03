@@ -8,6 +8,7 @@ android {
         applicationId "ru.ath.athautowatcher"
         minSdkVersion 19
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -103,4 +104,5 @@ dependencies {
     implementation 'com.yandex.android:places:3.5.0'
     implementation 'com.yandex.android:search:3.5.0'
     implementation 'com.yandex.android:transport:3.5.0'
+    implementation 'com.google.android.material:material:1.1.0'
 }
