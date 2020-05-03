@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean filtered; // признак фильтрации
 
+    private String filterInvnom;
+    private String filterAutocol;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,33 +45,33 @@ public class MainActivity extends AppCompatActivity {
 
         filtered = false;
 
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            // проверяем фильтрацию
-//            if (intent.hasExtra("setfilter")) {
-//                String invnom = null;
-//                String autocol = null;
-//
-//                if (intent.hasExtra("invnom")) {
-//                    invnom = intent.getStringExtra("invnom");
-//                    if (!invnom.isEmpty()) {
-//                        filtered = true;
-//                    }
-//                }
-//
-//                if (intent.hasExtra("autocol")) {
-//                    autocol = intent.getStringExtra("autocol");
-//                    if (!autocol.isEmpty()) {
-//                        filtered = true;
-//                    }
-//                }
-//
-//
-//            }
-//
-//
-//            Toast.makeText(this,"+", Toast.LENGTH_SHORT).show();
-//        }
+        Intent intent = getIntent();
+        if (intent != null) {
+            // проверяем фильтрацию
+            if (intent.hasExtra("setfilter")) {
+                filterInvnom = null;
+                filterAutocol = null;
+
+                if (intent.hasExtra("invnom")) {
+                    filterInvnom = intent.getStringExtra("invnom");
+                    if (!filterInvnom.isEmpty()) {
+                        filtered = true;
+                    }
+                }
+
+                if (intent.hasExtra("autocol")) {
+                    filterAutocol = intent.getStringExtra("autocol");
+                    if (!filterAutocol.isEmpty()) {
+                        filtered = true;
+                    }
+                }
+
+
+            }
+
+
+            Toast.makeText(this,"+", Toast.LENGTH_SHORT).show();
+        }
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
@@ -129,7 +133,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LiveData<List<Transport>> transportsFromLiveData = viewModel.getTransport();
+        LiveData<List<Transport>> transportsFromLiveData;
+        if (filtered) {
+            Log.i("myres", filterInvnom);
+            transportsFromLiveData = viewModel.getTransportByFilter(filterInvnom, filterAutocol);
+        } else {
+            transportsFromLiveData = viewModel.getTransport();
+        }
+
         transportsFromLiveData.observe(this, new Observer<List<Transport>>() {
             @Override
             public void onChanged(List<Transport> transports) {

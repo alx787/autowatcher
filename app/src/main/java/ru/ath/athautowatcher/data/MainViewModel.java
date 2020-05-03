@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -15,6 +16,8 @@ public class MainViewModel extends AndroidViewModel {
 
     private static TransportDatabase database;
     private LiveData<List<Transport>> transport;
+//    private LiveData<List<Transport>> transportFiltered;
+
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -48,6 +51,24 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<Transport>> getTransport() {
         return transport;
     }
+
+    public LiveData<List<Transport>> getTransportByFilter(String invnom, String autocol) {
+        return database.transportDao().getTransportByFilter(invnom, autocol);
+    }
+
+    public List<String> getAllAutoCols() {
+        try {
+            return new GetAllAutocolsTask().execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<String>();
+    }
+
+
+
 
     private static class GetTransportTask extends AsyncTask<Integer, Void, Transport> {
         @Override
@@ -84,6 +105,13 @@ public class MainViewModel extends AndroidViewModel {
                 database.transportDao().DeleteTransport(transports[0]);
             }
             return null;
+        }
+    }
+
+    private static class GetAllAutocolsTask extends AsyncTask<Void, Void, List<String>> {
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            return database.transportDao().getAllAutocols();
         }
     }
 }
