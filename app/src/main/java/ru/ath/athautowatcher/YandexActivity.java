@@ -20,7 +20,7 @@ public class YandexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MapKitFactory.setApiKey("8d3a1524-b690-4bc1-8777-35a040ffe18b");
+        MapKitFactory.setApiKey("");
         MapKitFactory.initialize(this);
 
         setContentView(R.layout.activity_yandex);
