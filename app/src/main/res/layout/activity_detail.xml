@@ -4,43 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0D0221"
+    android:padding="8dp"
     tools:context=".DetailActivity">
 
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#6688B0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <TableRow
-                android:id="@+id/tableRow1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:background="#26408B">
 
                 <TextView
                     android:id="@+id/textViewWlTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_span="2"
+                    android:padding="10dp"
                     android:text="Основные характеристики ТС"
                     android:textAlignment="viewStart"
                     android:textAllCaps="true"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="@+id/tableRow1"
-                    app:layout_constraintStart_toStartOf="@+id/tableRow1" />
-
+                    android:textColor="#C2E7D9"
+                    android:textSize="20dp" />
             </TableRow>
+
 
             <TableRow
                 android:layout_width="match_parent"
@@ -48,9 +51,12 @@
 
                 <TextView
                     android:id="@+id/textViewVehicletype"
-                    android:layout_width="150dp"
+                    android:layout_width="122dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
+                    android:textColor="#C2E7D9"
                     android:text="Тип ТС" />
 
                 <TextView
@@ -58,32 +64,504 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#C2E7D9"
                     android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
 
             </TableRow>
-
-
-
-
-
-
-
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="150dp"
+                <TextView
+                    android:id="@+id/textViewGrossvehicleweight"
+                    android:layout_width="122dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Вес ТС" />
+
+                <TextView
+                    android:id="@+id/textViewGrossvehicleweightVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Вес ТС знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewRegistrationplate"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Рег номер ТС" />
+
+                <TextView
+                    android:id="@+id/textViewRegistrationplateVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Рег номер ТС знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewVin"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="VIN" />
+
+                <TextView
+                    android:id="@+id/textViewVinVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="VIN знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewBrand"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Марка" />
+
+                <TextView
+                    android:id="@+id/textViewBrandVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Марка знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewModel"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Модель" />
+
+                <TextView
+                    android:id="@+id/textViewModelVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Модель знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewProdyear"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Год выпуска" />
+
+                <TextView
+                    android:id="@+id/textViewProdyearVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Год выпуска знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewColor"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Цвет" />
+
+                <TextView
+                    android:id="@+id/textViewColorVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Цвет знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewEnginemodel"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Модель двигателя" />
+
+                <TextView
+                    android:id="@+id/textViewEnginemodelVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Модель двигателя знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewPrimaryfueltype"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Тип топлива" />
+
+                <TextView
+                    android:id="@+id/textViewPrimaryfueltypeVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Тип топлива знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewEnginepower"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Мощность двигателя" />
+
+                <TextView
+                    android:id="@+id/textViewEnginepowerVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Мощность двигателя знач" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Тип ТС" />
+                android:background="#26408B">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textViewAdditionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_span="2"
+                    android:padding="10dp"
+                    android:text="Дополнительные поля"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="true"
+                    android:textColor="#C2E7D9"
+                    android:textSize="20dp" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtinvnom"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Инв номер" />
+
+                <TextView
+                    android:id="@+id/textViewAtinvnomVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Инв номер знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtinstalldate"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Дата установки" />
+
+                <TextView
+                    android:id="@+id/textViewAtinstalldateVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Дата установки знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtwheelformula"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Колесная формула" />
+
+                <TextView
+                    android:id="@+id/textViewAtwheelformulaVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Колесная формула знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtdepartment"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Подразделение" />
+
+                <TextView
+                    android:id="@+id/textViewAtdepartmentVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Подразделение знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtautocol"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Автоколонна" />
+
+                <TextView
+                    android:id="@+id/textViewAtautocolVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Автоколонна знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtlocation"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Месторасположение" />
+
+                <TextView
+                    android:id="@+id/textViewAtlocationVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Месторасположение знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtbase"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="Место базирования" />
+
+                <TextView
+                    android:id="@+id/textViewAtbaseVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="Место базирования знач" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewAtres"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textColor="#C2E7D9"
+                    android:text="РЭС" />
+
+                <TextView
+                    android:id="@+id/textViewAtresVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="4"
+                    android:textColor="#C2E7D9"
+                    android:text="РЭС знач" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                android:background="#26408B">
+
+                <TextView
+                    android:id="@+id/textViewLastDataTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_span="2"
+                    android:padding="10dp"
+                    android:text="Последние данные мониторинга"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="true"
+                    android:textColor="#C2E7D9"
+                    android:textSize="20dp" />
             </TableRow>
 
 
@@ -92,16 +570,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewTime"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:textColor="#C2E7D9"
+                    android:text="Дата сообщения" />
 
                 <TextView
+                    android:id="@+id/textViewTimeVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                    android:textColor="#C2E7D9"
+                    android:text="Дата сообщения знач" />
             </TableRow>
 
             <TableRow
@@ -109,16 +595,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewLong"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:textColor="#C2E7D9"
+                    android:text="Долгота" />
 
                 <TextView
+                    android:id="@+id/textViewLongVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#C2E7D9"
                     android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                    android:text="Долгота знач" />
             </TableRow>
 
             <TableRow
@@ -126,16 +620,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewLat"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:textColor="#C2E7D9"
+                    android:text="Широта" />
 
                 <TextView
+                    android:id="@+id/textViewLatVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                    android:textColor="#C2E7D9"
+                    android:text="Широта знач" />
             </TableRow>
 
             <TableRow
@@ -143,16 +645,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewSat"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:textColor="#C2E7D9"
+                    android:text="Спутники" />
 
                 <TextView
+                    android:id="@+id/textViewSatVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                    android:textColor="#C2E7D9"
+                    android:text="Спутники знач" />
             </TableRow>
 
             <TableRow
@@ -160,16 +670,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewSpeed"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:textColor="#C2E7D9"
+                    android:text="Скорость" />
 
                 <TextView
+                    android:id="@+id/textViewSpeedVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                    android:textColor="#C2E7D9"
+                    android:text="Скорость знач" />
             </TableRow>
 
             <TableRow
@@ -177,841 +695,63 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textViewCourse"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:textColor="#C2E7D9"
+                    android:text="Направление" />
 
                 <TextView
+                    android:id="@+id/textViewCourseVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
+                    android:textColor="#C2E7D9"
+                    android:text="Направление знач" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/buttonShowLastPosOnTheMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickShowLastPosOnTheMap"
+                    android:text="Показать на карте" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
+                <Button
+                    android:id="@+id/buttonProbeg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_weight="1"
-                    android:text="Тип ТС" />
+                    android:enabled="false"
+                    android:text="Пробеги" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Тип ТС" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач Тип ТС знач " />
             </TableRow>
 
         </TableLayout>
 
-</ScrollView>
-
-
-    <!--    <TextView-->
-<!--        android:id="@+id/textViewRegistrationplate"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Рег номер ТС"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewRegistrationplateVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewRegistrationplateVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewGrossvehicleweight" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewRegistrationplateVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Рег номер ТС знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewRegistrationplate"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewGrossvehicleweightVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewVin"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="VIN"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewVinVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewVinVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationplate" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewVinVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="VIN знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewVin"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewRegistrationplateVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewBrand"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Марка"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewBrandVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewBrandVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewVin" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewBrandVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Марка знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewBrand"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewVinVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewModel"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Модель"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewModelVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewModelVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewBrand" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewModelVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Модель знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewModel"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewBrandVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewProdyear"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Год выпуска"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewProdyearVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewProdyearVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewModel" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewProdyearVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Год выпуска знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewProdyear"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewModelVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewColor"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Цвет"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewColorVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewColorVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewProdyear" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewColorVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Цвет знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewColor"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewProdyearVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewEnginemodel"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Модель двигателя"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewEnginemodelVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewEnginemodelVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewColor" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewEnginemodelVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Модель двигателя знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewEnginemodel"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewColorVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewPrimaryfueltype"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Тип топлива"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewPrimaryfueltypeVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewPrimaryfueltypeVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewEnginemodel" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewPrimaryfueltypeVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Тип топлива знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewPrimaryfueltype"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewEnginemodelVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewEnginepower"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Мощность двигателя"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewEnginepowerVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewEnginepowerVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewPrimaryfueltype" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewEnginepowerVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Мощность двигателя знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewEnginepower"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewPrimaryfueltypeVal" />-->
-
-
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAdditionTitle"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Дополнительные поля"-->
-<!--        android:textAlignment="viewStart"-->
-<!--        android:textAllCaps="true"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewEnginepower" />-->
-
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtinvnom"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Инв номер"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtinvnomVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtinvnomVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAdditionTitle"  />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtinvnomVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Инв номер знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtinvnom"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAdditionTitle" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtinstalldate"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Дата установки"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtinstalldateVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtinstalldateVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtinvnom" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtinstalldateVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Дата установки знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtinstalldate"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtinvnomVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtwheelformula"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Колесная формула"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtwheelformulaVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtwheelformulaVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtinstalldate" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtwheelformulaVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Колесная формула знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtwheelformula"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtinstalldateVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtdepartment"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Подразделение"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtdepartmentVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtdepartmentVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtwheelformula" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtdepartmentVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Подразделение знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtdepartment"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtwheelformulaVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtautocol"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Автоколонна"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtautocolVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtautocolVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtdepartment" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtautocolVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Автоколонна знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtautocol"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtdepartmentVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtlocation"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Месторасположение"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtlocationVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtlocationVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtautocol" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtlocationVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Месторасположение знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtlocation"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtautocolVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtbase"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Место базирования"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtbaseVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtbaseVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtlocation" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtbaseVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Место базирования знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtbase"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtlocationVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtres"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="РЭС"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewAtresVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewAtresVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtbase" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewAtresVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="РЭС знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewAtres"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtbaseVal" />-->
-
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewLastDataTitle"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Последние данные мониторинга"-->
-<!--        android:textAlignment="viewStart"-->
-<!--        android:textAllCaps="true"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewAtres" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewTime"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Дата сообщения"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewTimeVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewTimeVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewLastDataTitle" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewTimeVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Дата последнего сообщения знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewTime"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewLastDataTitle" />-->
-
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewLong"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Долгота"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewLongVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewLongVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewTime"  />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewLongVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Долгота знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewLong"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewTimeVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewLat"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Широта"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewLatVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewLatVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewLong"  />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewLatVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Широта знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewLat"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewLongVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewSat"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Спутники"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewSatVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewSatVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewLat"  />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewSatVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Спутники знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewSat"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewLatVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewSpeed"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Скорость"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewSpeedVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewSpeedVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewSat"  />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewSpeedVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Скорость знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewSpeed"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewSatVal" />-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewCourse"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:text="Направление"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewCourseVal"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/textViewCourseVal"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewSpeed"  />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewCourseVal"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Направление знач"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textViewCourse"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewSpeedVal" />-->
-
-
-
-<!--    <Button-->
-<!--        android:id="@+id/buttonShowLastPosOnTheMap"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="Показать на карте"-->
-<!--        android:onClick="onClickShowLastPosOnTheMap"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textViewCourse" />-->
-
-
-
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
