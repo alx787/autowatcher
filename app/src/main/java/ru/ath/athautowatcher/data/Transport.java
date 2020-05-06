@@ -1,6 +1,7 @@
 package ru.ath.athautowatcher.data;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "transport")
@@ -29,6 +30,7 @@ public class Transport {
     private String atbase;
     private String atres;
 
+    @Ignore
     public Transport() {
     }
 

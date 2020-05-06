@@ -20,11 +20,6 @@
         <activity android:name=".FilterActivity" />
         <activity android:name=".YandexActivity" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="" />
-
-        <activity android:name=".GoogleActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
