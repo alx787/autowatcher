@@ -178,6 +178,10 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra("x", textViewLongVal.getText().toString());
         intent.putExtra("y", textViewLatVal.getText().toString());
         startActivity(intent);
+    }
 
+    public void onClickSetupTrack(View view) {
+        Intent intent = new Intent(this, TrackSetupActivity.class);
+        startActivity(intent);
     }
 }

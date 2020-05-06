@@ -745,7 +745,8 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
-                    android:enabled="false"
+                    android:enabled="true"
+                    android:onClick="onClickSetupTrack"
                     android:text="Пробеги" />
 
             </TableRow>
