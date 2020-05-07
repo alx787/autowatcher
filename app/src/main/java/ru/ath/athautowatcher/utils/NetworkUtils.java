@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 public class NetworkUtils {
-    private static final String BASE_URL = "http://192.168.1.122:8080/restprox/";
+    private static final String BASE_URL = "http://192.168.0.56:8080/restprox/";
     private static final String URL_GET_ALL_OBJS = "wl/getobject/db/all";
     private static final String URL_GET_LASTPOS = "track/getlastpos/__invnom__";
 
