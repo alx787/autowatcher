@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:enabled="false"
             android:ems="10"
             android:hint="Дата начала"
             android:inputType="date"
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="&lt;-- Дата нач"
+            android:onClick="onClickDateBeg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/editTextDateBeg"
@@ -56,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:enabled="false"
             android:ems="10"
             android:hint="Дата окончания"
             android:inputType="date"
@@ -71,6 +74,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="&lt;-- Дата кон"
+            android:onClick="onClickDateEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/editTextDateEnd"
@@ -90,11 +94,12 @@
 
 
         <Button
-            android:id="@+id/buttonGo"
+            android:id="@+id/buttonViewProbeg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Показать пробег"
+            android:onClick="onClickViewProbeg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/datePicker" />
