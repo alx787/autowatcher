@@ -16,6 +16,8 @@ public class TrackViewActivity extends AppCompatActivity {
     private TabItem tabItemList, tabItemMap;
     private MyPagerAdapter pagerAdapter;
 
+    private String someText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,5 +49,11 @@ public class TrackViewActivity extends AppCompatActivity {
         });
 
         viewPagerTrack.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayoutTrack));
+
+        someText = "some text 123";
+    }
+
+    public String getSomeText() {
+        return someText;
     }
 }

@@ -182,6 +182,8 @@ public class DetailActivity extends AppCompatActivity {
 
     public void onClickSetupTrack(View view) {
         Intent intent = new Intent(this, TrackSetupActivity.class);
+        intent.putExtra("regnom", textViewAtinvnomVal.getText().toString());
+        intent.putExtra("invnom", textViewAtinvnomVal.getText().toString());
         startActivity(intent);
     }
 }

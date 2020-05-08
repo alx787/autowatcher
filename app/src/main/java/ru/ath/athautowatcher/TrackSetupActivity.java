@@ -46,6 +46,19 @@ public class TrackSetupActivity extends AppCompatActivity {
         editTextDateBeg.setText(formatDate.format(new Date()));
         editTextDateEnd.setText(formatDate.format(new Date()));
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.hasExtra("regnom")) {
+                textViewTransportInfo.setText(intent.getStringExtra("regnom"));
+            }
+
+            if (intent.hasExtra("invnom")) {
+                invnom = intent.getStringExtra("invnom");
+            } else {
+                buttonViewProbeg.setEnabled(false);
+            }
+        }
+
     }
 
     public void onClickDateBeg(View view) {
@@ -61,6 +74,10 @@ public class TrackSetupActivity extends AppCompatActivity {
     }
 
     public void onClickViewProbeg(View view) {
+
+        if (invnom == null || invnom.equals("")) {
+            return;
+        }
 
         String sDateBeg = editTextDateBeg.getText().toString();
         String sDateEnd = editTextDateEnd.getText().toString();
@@ -96,9 +113,9 @@ public class TrackSetupActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         Intent intent = new Intent(this, TrackViewActivity.class);
-//        intent.putExtra("datebeg", format.format(dDateBeg));
-//        intent.putExtra("dateend", format.format(dDateEnd));
-//        intent.putExtra("invnom", invnom);
+        intent.putExtra("invnom", invnom);
+        intent.putExtra("datebeg", format.format(dDateBeg));
+        intent.putExtra("dateend", format.format(dDateEnd));
         startActivity(intent);
     }
 }
