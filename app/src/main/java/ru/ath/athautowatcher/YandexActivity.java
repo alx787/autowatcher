@@ -12,6 +12,8 @@ import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.mapview.MapView;
 import com.yandex.runtime.image.ImageProvider;
 
+import ru.ath.athautowatcher.utils.Globals;
+
 public class YandexActivity extends AppCompatActivity {
 
     private MapView mapView;
@@ -20,7 +22,7 @@ public class YandexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MapKitFactory.setApiKey("");
+        MapKitFactory.setApiKey(Globals.MAPKIT_API_KEY);
         MapKitFactory.initialize(this);
 
         setContentView(R.layout.activity_yandex);

@@ -6,69 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".TrackListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayoutWrapper"
+            android:id="@+id/linearLayoutTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/scrollViewTrack">
 
-            <androidx.cardview.widget.CardView
+
+            <TextView
+                android:id="@+id/textViewPeriodTotal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:text="Период123"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/textViewDurationTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Длительность"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Период"
+            <TextView
+                android:id="@+id/textViewMotohoursTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Моточасы"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textViewProbegTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Пробег"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Длительность"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Моточасы"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Пробег"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Расход топлива по нормам"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textViewFuelRateTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Расход топлива по нормам"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
-    </ScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollViewTrack"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutTotal">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutWrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Период"-->
+
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Длительность"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Моточасы"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Пробег"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Расход топлива по нормам"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent" />-->
+
+
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

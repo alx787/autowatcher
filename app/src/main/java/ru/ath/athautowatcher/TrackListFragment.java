@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.Random;
+
+import ru.ath.athautowatcher.utils.TrackElement;
 
 
 /**
@@ -32,20 +35,33 @@ public class TrackListFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_track_list, container, false);
 
+        TextView textViewElem = (TextView) rootView.findViewById(R.id.textViewPeriodTotal);
+        textViewElem.setText(((TrackViewActivity) getActivity()).getPeriod());
+
+        textViewElem = (TextView) rootView.findViewById(R.id.textViewDurationTotal);
+        textViewElem.setText(((TrackViewActivity) getActivity()).getDuration());
+
+        textViewElem = (TextView) rootView.findViewById(R.id.textViewMotohoursTotal);
+        textViewElem.setText(((TrackViewActivity) getActivity()).getMotohours());
+
+        textViewElem = (TextView) rootView.findViewById(R.id.textViewProbegTotal);
+        textViewElem.setText(((TrackViewActivity) getActivity()).getProbeg());
+
+        textViewElem = (TextView) rootView.findViewById(R.id.textViewFuelRateTotal);
+        textViewElem.setText(((TrackViewActivity) getActivity()).getFuelrate());
 
 
-
-
+        // параметры выравнивания для LinearLayout
         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
+        // добавляем элементы в макет в дочерние этого
         LinearLayout linearLayoutWrapper = (LinearLayout) rootView.findViewById((R.id.linearLayoutWrapper));
 
 
-        for (int i = 1; i <= 10; i++) {
-            linearLayoutWrapper.addView(getCardViewTrack(), lParams);
+        List<TrackElement> trackArr = ((TrackViewActivity) getActivity()).getTrackArr();
+
+        for (TrackElement oneTrack : trackArr) {
+            linearLayoutWrapper.addView(getCardViewTrack(oneTrack.getDatebeg(), oneTrack.getDateend(), oneTrack.getDuration(), oneTrack.getMotohours(), oneTrack.getProbeg(), oneTrack.getFuelrate()), lParams);
         }
-
-
 
         return rootView;
     }
@@ -54,7 +70,7 @@ public class TrackListFragment extends Fragment {
     ///////////////////////////////////////
     // создаем и наполняем элемент cardView
     ///////////////////////////////////////
-    private CardView getCardViewTrack() {
+    private CardView getCardViewTrack(String datebeg, String dateend, String duration, String motohours,String probeg, String fuelRate) {
         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         CardView cardViewTrack = new CardView(getActivity());
@@ -64,19 +80,19 @@ public class TrackListFragment extends Fragment {
 
 
         TextView textViewPeriod = new TextView(getActivity());
-        textViewPeriod.setText("Период пробега ___");
+        textViewPeriod.setText("с " + datebeg + " по " + dateend);
 
         TextView textViewDuration = new TextView(getActivity());
-        textViewDuration.setText("Длительность ___");
+        textViewDuration.setText("длительность: " + duration);
 
         TextView textViewMotohours = new TextView(getActivity());
-        textViewMotohours.setText("Моточасы ___");
+        textViewMotohours.setText("моточасы: " + motohours);
 
         TextView textViewProbeg = new TextView(getActivity());
-        textViewProbeg.setText("Пробег ___");
+        textViewProbeg.setText("пробег: " + probeg);
 
         TextView textViewRashod = new TextView(getActivity());
-        textViewRashod.setText("Расход топлива по нормам ___");
+        textViewRashod.setText("расход топлива по нормам: " + fuelRate);
 
         cardViewTrack.addView(linearLayoutTrack, lParams);
         linearLayoutTrack.addView(textViewPeriod, lParams);
