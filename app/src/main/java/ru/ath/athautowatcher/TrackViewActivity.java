@@ -112,9 +112,9 @@ public class TrackViewActivity extends AppCompatActivity {
                 wasError = true;
             }
 
-            Log.i("myres", jsonObject.toString());
+            //Log.i("myres", jsonObject.toString());
 
-            if (jsonObject.has("status")) {
+            if (!wasError && jsonObject.has("status")) {
                 if (jsonObject.get("status").getAsString().equals("error")) {
                     Toast.makeText(this , "Ошибка, ошибка в ответе сервера, пробеги не загружены", Toast.LENGTH_SHORT).show();
                     wasError = true;
@@ -124,7 +124,7 @@ public class TrackViewActivity extends AppCompatActivity {
                 wasError = true;
             }
 
-            if (!jsonObject.has("content")) {
+            if (!wasError && !jsonObject.has("content")) {
                 Toast.makeText(this, "Информация о пробегах не обнаружена", Toast.LENGTH_SHORT).show();
                 wasError = true;
             }

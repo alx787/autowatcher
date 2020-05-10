@@ -66,6 +66,7 @@ public class NetworkUtils {
             HttpURLConnection connection = null;
             try {
                 connection = (HttpURLConnection) new URL(strings[0]).openConnection();
+                connection.setConnectTimeout(5000);
 
                 int responseCode = connection.getResponseCode();
 

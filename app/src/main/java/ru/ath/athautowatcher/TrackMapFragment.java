@@ -62,8 +62,8 @@ public class TrackMapFragment extends Fragment {
 
         if (trackArr.size() > 0) {
             try {
-                dLastX = Double.valueOf(trackArr.get(trackArr.size() - 1).getTrackbegx());
-                dLastY = Double.valueOf(trackArr.get(trackArr.size() - 1).getTrackbegy());
+                dLastX = Double.valueOf(trackArr.get(trackArr.size() - 1).getTrackendx());
+                dLastY = Double.valueOf(trackArr.get(trackArr.size() - 1).getTrackendy());
             } catch (Exception e) {
 
             }
@@ -72,14 +72,22 @@ public class TrackMapFragment extends Fragment {
         int cnt = 0;
         for (TrackElement oneTrack : trackArr) {
             cnt++;
-            setPointOnMap(String.valueOf(cnt) + ". "+ oneTrack.getDatebeg() + "\n\n\n\n\n", oneTrack.getTrackbegx(), oneTrack.getTrackbegy());
+            setPointOnMap(String.valueOf(cnt) + ".1 "+ oneTrack.getDatebeg() + "\n\n\n\n\n", oneTrack.getTrackbegx(), oneTrack.getTrackbegy());
+            setPointOnMap( "\n\n" + String.valueOf(cnt) + ".2 "+ oneTrack.getDateend(), oneTrack.getTrackendx(), oneTrack.getTrackendy());
         }
 
+//        if (trackArr.size() > 0) {
+//            TrackElement oneTrack =  trackArr.get(0);
+//            int cnt = 1;
+//            setPointOnMap(String.valueOf(cnt) + ". "+ oneTrack.getDatebeg() + "\n\n\n\n\n", oneTrack.getTrackbegx(), oneTrack.getTrackbegy());
+//        }
 
-        mapView.getMap().move(
-                new CameraPosition(new Point(dLastY, dLastX), 11.0f, 0.0f, 0.0f),
-                new Animation(Animation.Type.SMOOTH, 0),
-                null);
+        if (trackArr.size() > 0) {
+            mapView.getMap().move(
+                    new CameraPosition(new Point(dLastY, dLastX), 11.0f, 0.0f, 0.0f),
+                    new Animation(Animation.Type.SMOOTH, 0),
+                    null);
+        }
 
         return rootView;
     }
