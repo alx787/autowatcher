@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TrackViewActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".TrackViewActivity" />
         <activity android:name=".TrackSetupActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".FilterActivity" />

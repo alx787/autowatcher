@@ -57,6 +57,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        setTitle("Информация по ТС");
+
 //        textViewTitleVal = (TextView) findViewById(R.id.textViewTitleVal);
         textViewVehicletypeVal = (TextView) findViewById(R.id.textViewVehicletypeVal);
         textViewGrossvehicleweightVal = (TextView) findViewById(R.id.textViewGrossvehicleweightVal);

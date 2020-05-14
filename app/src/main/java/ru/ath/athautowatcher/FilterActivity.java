@@ -31,6 +31,8 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
+        setTitle("Фильтр");
+
         editTextInvnom = (EditText) findViewById(R.id.editTextInvnom);
         spinnerAutocol = (Spinner) findViewById(R.id.spinnerAutocol);
         spinnerDepartment = (Spinner) findViewById(R.id.spinnerDepartment);
