@@ -21,6 +21,7 @@ public class FilterActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
 
+    private EditText editTextRegnom;
     private EditText editTextInvnom;
     private Spinner spinnerAutocol;
     private Spinner spinnerDepartment;
@@ -33,6 +34,7 @@ public class FilterActivity extends AppCompatActivity {
 
         setTitle("Фильтр");
 
+        editTextRegnom = (EditText) findViewById(R.id.editTextRegnom);
         editTextInvnom = (EditText) findViewById(R.id.editTextInvnom);
         spinnerAutocol = (Spinner) findViewById(R.id.spinnerAutocol);
         spinnerDepartment = (Spinner) findViewById(R.id.spinnerDepartment);
@@ -63,6 +65,19 @@ public class FilterActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.hasExtra("regnom")) {
+                editTextRegnom.setText(intent.getStringExtra("regnom"));
+            }
+
+            if (intent.hasExtra("invnom")) {
+                editTextRegnom.setText(intent.getStringExtra("invnom"));
+            }
+
+        }
+
+
     }
 
     public void onClickFilter(View view) {
@@ -70,6 +85,7 @@ public class FilterActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         intent.putExtra("setfilter", "");
+        intent.putExtra("regnom", editTextRegnom.getText().toString());
         intent.putExtra("invnom", editTextInvnom.getText().toString());
         intent.putExtra("autocol", spinnerAutocol.getSelectedItem().toString());
         intent.putExtra("department", spinnerDepartment.getSelectedItem().toString());

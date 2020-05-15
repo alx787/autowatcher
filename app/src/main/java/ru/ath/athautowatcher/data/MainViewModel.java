@@ -52,8 +52,8 @@ public class MainViewModel extends AndroidViewModel {
         return transport;
     }
 
-    public LiveData<List<Transport>> getTransportByFilter(String invnom, String autocol, String department) {
-        return database.transportDao().getTransportByFilter(invnom, autocol, department);
+    public LiveData<List<Transport>> getTransportByFilter(String regnom, String invnom, String autocol, String department) {
+        return database.transportDao().getTransportByFilter(regnom, invnom, autocol, department);
     }
 
     public List<String> getAllAutoCols() {

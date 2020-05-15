@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean filtered; // признак фильтрации
 
+    private String filterRegnom;
     private String filterInvnom;
     private String filterAutocol;
     private String filterDepartment;
@@ -55,8 +56,18 @@ public class MainActivity extends AppCompatActivity {
         if (intent != null) {
             // проверяем фильтрацию
             if (intent.hasExtra("setfilter")) {
+                filterRegnom = null;
                 filterInvnom = null;
                 filterAutocol = null;
+
+                if (intent.hasExtra("regnom")) {
+                    filterRegnom = intent.getStringExtra("regnom");
+                    if (filterRegnom.isEmpty()) {
+                        filterRegnom = null;
+                    } else {
+                        filterRegnom = filterRegnom;
+                    }
+                }
 
                 if (intent.hasExtra("invnom")) {
                     filterInvnom = intent.getStringExtra("invnom");
@@ -79,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                if (filterInvnom != null || filterAutocol != null || filterDepartment != null) {
+                if (filterRegnom != null || filterInvnom != null || filterAutocol != null || filterDepartment != null) {
                     filtered = true;
                 }
             }
@@ -127,7 +138,13 @@ public class MainActivity extends AppCompatActivity {
         LiveData<List<Transport>> transportsFromLiveData;
         if (filtered) {
 //            Log.i("myres", filterInvnom);
-            transportsFromLiveData = viewModel.getTransportByFilter(filterInvnom, filterAutocol, filterDepartment);
+            String filtLikeRegnom = null;
+
+            if (filterRegnom != null && !filterRegnom.isEmpty()) {
+                filtLikeRegnom = "%" + filterRegnom + "%";
+            }
+
+            transportsFromLiveData = viewModel.getTransportByFilter(filtLikeRegnom, filterInvnom, filterAutocol, filterDepartment);
         } else {
             transportsFromLiveData = viewModel.getTransport();
         }
@@ -161,6 +178,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickFilter(View view) {
         Intent intent = new Intent(this, FilterActivity.class);
+
+        if (filterRegnom == null || filterRegnom.isEmpty()) {
+            intent.putExtra("regnom", "");
+        } else {
+            intent.putExtra("regnom", filterRegnom);
+        }
+
+        if (filterInvnom == null || filterInvnom.isEmpty()) {
+            intent.putExtra("invnom", "");
+        } else {
+            intent.putExtra("invnom", filterInvnom);
+        }
+
+        if (filterAutocol == null || filterAutocol.isEmpty()) {
+            intent.putExtra("autocol", "");
+        } else {
+            intent.putExtra("autocol", filterAutocol);
+        }
+
+        if (filterDepartment == null || filterDepartment.isEmpty()) {
+            intent.putExtra("department", "");
+        } else {
+            intent.putExtra("department", filterDepartment);
+        }
+
         startActivity(intent);
     }
 }

@@ -5,99 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0D0221"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     tools:context=".FilterActivity">
 
+
     <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewRegNom"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Фильтр"
+        android:text="Регистрационный номер"
+        android:textAlignment="center"
         android:textColor="#C2E7D9"
-        android:textSize="50dp"
-        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewInvnom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Инвентарный номер"
-        android:textColor="#C2E7D9"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <EditText
-        android:id="@+id/editTextInvnom"
-        android:layout_width="197dp"
+        android:id="@+id/editTextRegnom"
+        android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="#6688B0"
         android:ems="10"
         android:inputType="textPersonName"
+        android:text="reg nomer"
+        android:textAlignment="center"
+        android:textColor="#C2E7D9"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRegNom" />
+
+    <TextView
+        android:id="@+id/textViewInvnom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Инвентарный номер"
+        android:textAlignment="center"
         android:textColor="#C2E7D9"
         android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInvnom" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegnom" />
+
+    <EditText
+        android:id="@+id/editTextInvnom"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:background="#6688B0"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#C2E7D9"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInvnom"
+        tools:text="inv nomer" />
 
     <TextView
         android:id="@+id/textViewAutocol"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Автоколонна"
+        android:textAlignment="center"
         android:textColor="#C2E7D9"
         android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextInvnom" />
 
     <Spinner
         android:id="@+id/spinnerAutocol"
-        android:layout_width="285dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
         android:layout_marginTop="20dp"
         android:background="#160337"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAutocol" />
 
     <TextView
         android:id="@+id/textViewDepartment"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Подразделение"
+        android:textAlignment="center"
         android:textColor="#C2E7D9"
         android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerAutocol" />
 
     <Spinner
         android:id="@+id/spinnerDepartment"
-        android:layout_width="285dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
         android:layout_marginTop="20dp"
         android:background="#160337"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
 
     <Button
         android:id="@+id/buttonOk"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@android:string/ok"
+        android:layout_marginTop="40dp"
         android:onClick="onClickFilter"
+        android:text="@android:string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDepartment" />
 

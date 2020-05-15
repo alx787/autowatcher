@@ -17,11 +17,12 @@ public interface TransportDao {
 
     @Query(
             "SELECT * FROM transport " +
-                    "WHERE (:invnom IS NULL OR atinvnom LIKE :invnom) " +
-                    "AND (:autocol IS NULL OR  atautocol = :autocol) " +
-                    "AND (:department IS NULL OR  atdepartment = :department)"
+                    "WHERE (:regnom IS NULL OR registrationplate LIKE :regnom) " +
+                    "AND (:invnom IS NULL OR atinvnom = :invnom) " +
+                    "AND (:autocol IS NULL OR atautocol = :autocol) " +
+                    "AND (:department IS NULL OR atdepartment = :department)"
     )
-    LiveData<List<Transport>> getTransportByFilter(@Nullable String invnom, @Nullable String autocol, @Nullable String department);
+    LiveData<List<Transport>> getTransportByFilter(@Nullable String regnom, @Nullable String invnom, @Nullable String autocol, @Nullable String department);
 
     @Query("SELECT * FROM transport WHERE id == :id")
     Transport getTransportById(int id);
