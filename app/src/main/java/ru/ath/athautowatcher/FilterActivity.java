@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,10 +40,11 @@ public class FilterActivity extends AppCompatActivity {
         spinnerAutocol = (Spinner) findViewById(R.id.spinnerAutocol);
         spinnerDepartment = (Spinner) findViewById(R.id.spinnerDepartment);
 
-        // заполним спиннер автоколонны
+          // заполним спиннер автоколонны
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         final List<String> autocolsList = viewModel.getAllAutoCols();
+
         final ArrayAdapter<String> spinnerAutocolArrayAdapter = new ArrayAdapter<String>(this, R.layout.autocol_filter_spinner_item, autocolsList);
         spinnerAutocolArrayAdapter.setDropDownViewResource(R.layout.autocol_filter_spinner_item);
         spinnerAutocol.setAdapter(spinnerAutocolArrayAdapter);
@@ -50,37 +52,56 @@ public class FilterActivity extends AppCompatActivity {
         spinnerAutocol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.i("myres 1", String.valueOf(position) + ((TextView) view).getText().toString());
-//                Log.i("myres 2", spinnerAutocol.getSelectedItem().toString());
 
-                final List<String> departList = viewModel.getDepartments(spinnerAutocol.getSelectedItem().toString());
-                final ArrayAdapter<String> spinnerDepartsArrayAdapter = new ArrayAdapter<String>(FilterActivity.this, R.layout.autocol_filter_spinner_item, departList);
-                spinnerDepartsArrayAdapter.setDropDownViewResource(R.layout.autocol_filter_spinner_item);
-                spinnerDepartment.setAdapter(spinnerDepartsArrayAdapter);
+                setDepartArrayAdapder();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
+
         Intent intent = getIntent();
         if (intent != null) {
+            ////////////////////////////////////////////////////
+            // установка значений фильтра если он был задан ранее
+            ////////////////////////////////////////////////////
+
             if (intent.hasExtra("regnom")) {
                 editTextRegnom.setText(intent.getStringExtra("regnom"));
             }
 
             if (intent.hasExtra("invnom")) {
-                editTextRegnom.setText(intent.getStringExtra("invnom"));
+                editTextInvnom.setText(intent.getStringExtra("invnom"));
+            }
+
+            if (intent.hasExtra("autocol")) {
+                String selectedValue = intent.getStringExtra("autocol");
+                if (!selectedValue.equals("")) {
+//                    ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerAutocol.getAdapter();
+                    spinnerAutocol.setSelection(spinnerAutocolArrayAdapter.getPosition(selectedValue));
+                }
+            }
+
+            if (intent.hasExtra("department")) {
+                String selectedValue = intent.getStringExtra("department");
+                if (!selectedValue.equals("")) {
+                    setDepartArrayAdapder();
+                    ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerDepartment.getAdapter();
+                    spinnerDepartment.setSelection(adapter.getPosition(selectedValue));
+                }
+
             }
 
         }
-
-
     }
 
     public void onClickFilter(View view) {
+
+//        Toast.makeText(getApplicationContext(), "select " + spinnerAutocol.getSelectedItemPosition(), Toast.LENGTH_SHORT).show();
+//        return;
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -90,8 +111,15 @@ public class FilterActivity extends AppCompatActivity {
         intent.putExtra("autocol", spinnerAutocol.getSelectedItem().toString());
         intent.putExtra("department", spinnerDepartment.getSelectedItem().toString());
 
-//        Log.i("myres", editTextInvnom.getText());
-
         startActivity(intent);
+    }
+
+
+    private void setDepartArrayAdapder() {
+        final List<String> departList = viewModel.getDepartments(spinnerAutocol.getSelectedItem().toString());
+
+        final ArrayAdapter<String> spinnerDepartsArrayAdapter = new ArrayAdapter<String>(FilterActivity.this, R.layout.autocol_filter_spinner_item, departList);
+        spinnerDepartsArrayAdapter.setDropDownViewResource(R.layout.autocol_filter_spinner_item);
+        spinnerDepartment.setAdapter(spinnerDepartsArrayAdapter);
     }
 }

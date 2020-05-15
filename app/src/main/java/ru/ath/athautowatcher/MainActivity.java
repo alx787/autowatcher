@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
                     filterRegnom = intent.getStringExtra("regnom");
                     if (filterRegnom.isEmpty()) {
                         filterRegnom = null;
-                    } else {
-                        filterRegnom = filterRegnom;
                     }
                 }
 
