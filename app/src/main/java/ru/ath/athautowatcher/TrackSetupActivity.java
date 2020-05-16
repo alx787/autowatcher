@@ -35,6 +35,8 @@ public class TrackSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_setup);
 
+        setTitle("Период пробега");
+
         textViewTransportInfo = (TextView) findViewById(R.id.textViewTransportInfo);
         editTextDateBeg = (EditText) findViewById(R.id.editTextDateBeg);
         editTextDateEnd = (EditText) findViewById(R.id.editTextDateEnd);

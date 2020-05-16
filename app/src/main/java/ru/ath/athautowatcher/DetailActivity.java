@@ -143,7 +143,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setLastPosDataText(String invnom) {
         // запросим на сервере последнее место положение
-        JsonObject jsonObject = NetworkUtils.getJsonLastPosition(invnom);
+        JsonObject jsonObject = NetworkUtils.getJsonLastPosition(this, invnom);
         if (jsonObject == null) {
             Toast.makeText(this, "Ошибка, не получен ответ от сервера, геоданные не определены", Toast.LENGTH_SHORT).show();
             return;

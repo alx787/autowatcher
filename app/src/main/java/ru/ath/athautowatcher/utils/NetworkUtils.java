@@ -1,6 +1,9 @@
 package ru.ath.athautowatcher.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -13,39 +16,82 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
+import ru.ath.athautowatcher.MainActivity;
+
 public class NetworkUtils {
     private static final String BASE_URL = "http://192.168.1.2:8080/restprox/";
+
+    private static final String URL_CONTEXT = "/restprox/";
     private static final String URL_GET_ALL_OBJS = "wl/getobject/db/all";
     private static final String URL_GET_LASTPOS = "track/getlastpos/__invnom__";
     private static final String URL_GET_TRACKS = "track/gettrack/__invnom__/__datebeg__/__dateend__";
+    private static final String URL_GET_NEWAUTH = "info/newauth";
 
 
-    public static JsonObject getJsonAllObjects() {
-        String url = BASE_URL + URL_GET_ALL_OBJS;
-        return getJsonFromNetwork(url);
+    //////////////////////////////////////////
+    // запросы к серверу
+    //////////////////////////////////////////
+    public static JsonObject getJsonAllObjects(Context ctxt) {
+//        String url = BASE_URL + URL_GET_ALL_OBJS;
+        String url = getServerSite(ctxt) + URL_GET_ALL_OBJS;
+        return getJsonFromNetwork(ctxt, url);
     }
 
-    public static JsonObject getJsonLastPosition(String invnom) {
-        String url = BASE_URL + URL_GET_LASTPOS.replace("__invnom__", invnom);
-        return getJsonFromNetwork(url);
+    public static JsonObject getJsonLastPosition(Context ctxt, String invnom) {
+//        String url = BASE_URL + URL_GET_LASTPOS.replace("__invnom__", invnom);
+        String url = getServerSite(ctxt) + URL_GET_LASTPOS.replace("__invnom__", invnom);
+        return getJsonFromNetwork(ctxt, url);
     }
 
-    public static JsonObject getJsonTracks(String invnom, String datebeg, String dateend) {
-        String url = BASE_URL + URL_GET_TRACKS.replace("__invnom__", invnom);
+    public static JsonObject getJsonTracks(Context ctxt, String invnom, String datebeg, String dateend) {
+//        String url = BASE_URL + URL_GET_TRACKS.replace("__invnom__", invnom);
+        String url = getServerSite(ctxt) + URL_GET_TRACKS.replace("__invnom__", invnom);
         url = url.replace("__datebeg__", datebeg);
         url = url.replace("__dateend__", dateend);
+        return getJsonFromNetwork(ctxt, url);
+    }
 
-        return getJsonFromNetwork(url);
+    // запрос токена
+    public static JsonObject getAuthInfo(Context ctxt) {
+        String url = getServerSite(ctxt) + URL_GET_NEWAUTH;
+        return getJsonFromNetwork(ctxt, url);
     }
 
 
+    //////////////////////////////////////////
+    // вспомогательные процедуры
+    //////////////////////////////////////////
+    private static String getServerSite(Context ctxt) {
+        SharedPreferences mSettings = ctxt.getSharedPreferences(Globals.APP_PREFERENCES, Context.MODE_PRIVATE);
+        String sAddress = mSettings.getString(Globals.SRV_ADDRESS, "");
+        String sPort = mSettings.getString(Globals.SRV_PORT, "");
 
-    private static JsonObject getJsonFromNetwork(String url) {
+        if (sAddress.equals("") || sPort.equals("")) {
+            return null;
+        }
+
+        return "http://" + sAddress + ":" + sPort + URL_CONTEXT;
+    }
+
+    private static String getAuthPostData(Context ctxt, String url) {
+        String retValue = null;
+
+        SharedPreferences mSettings = ctxt.getSharedPreferences(Globals.APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        if (url.endsWith(URL_GET_NEWAUTH)) {
+            retValue = "{\"login\":\"" + mSettings.getString(Globals.SRV_USERNAME, "") + "\", \"password\":\"" + mSettings.getString(Globals.SRV_PASSWORD, "") + "\"}";
+        } else {
+            retValue = "{\"userid\":\"" + mSettings.getString(Globals.SRV_USERID, "") + "\", \"token\":\"" + mSettings.getString(Globals.SRV_TOKEN, "") + "\"}";
+        }
+        return retValue;
+    }
+
+    private static JsonObject getJsonFromNetwork(Context ctxt, String url) {
         JsonObject result = null;
 //        String url = BASE_URL + URL_GET_ALL_OBJS;
 
         try {
-            result = new JsonLoadTask().execute(url).get();
+            result = new JsonLoadTask().execute(ctxt, url).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -55,18 +101,31 @@ public class NetworkUtils {
         return result;
     }
 
-    private static class JsonLoadTask extends AsyncTask<String, Void, JsonObject> {
+    //////////////////////////////////////////
+    // асинхронный запрос
+    //////////////////////////////////////////
+    private static class JsonLoadTask extends AsyncTask<Object, Void, JsonObject> {
         @Override
-        protected JsonObject doInBackground(String... strings) {
-            if ((strings == null) || (strings.length == 0)) {
+        protected JsonObject doInBackground(Object... objects) {
+            if ((objects == null) || (objects.length == 0)) {
                 return null;
             }
+
+            Context ctxt = (Context) objects[0];
+            String url = (String) objects[1];
 
             JsonObject resJson = null;
             HttpURLConnection connection = null;
             try {
-                connection = (HttpURLConnection) new URL(strings[0]).openConnection();
+                connection = (HttpURLConnection) new URL(url).openConnection();
                 connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                connection.setRequestProperty("Accept", "application/json");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                Log.i("myres", connection.getURL().getPath() + " - " + connection.getURL().getQuery());
+
                 connection.setConnectTimeout(5000);
 
                 int responseCode = connection.getResponseCode();

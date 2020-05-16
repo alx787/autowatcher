@@ -22,6 +22,8 @@ public class YandexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setTitle("Последнее местоположение ТС");
+
         MapKitFactory.setApiKey(Globals.MAPKIT_API_KEY);
         MapKitFactory.initialize(this);
 

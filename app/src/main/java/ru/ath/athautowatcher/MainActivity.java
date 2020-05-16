@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewTransports = findViewById(R.id.recyclerViewTransports);
 
-        JsonObject jsonObject = NetworkUtils.getJsonAllObjects();
+        JsonObject jsonObject = NetworkUtils.getJsonAllObjects(this);
         if (jsonObject != null) {
 //            Toast.makeText(this,"++", Toast.LENGTH_SHORT).show();
             transports = JsonUtils.getTransportListFromJson(jsonObject);

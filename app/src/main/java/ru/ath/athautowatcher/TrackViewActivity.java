@@ -41,6 +41,8 @@ public class TrackViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_view);
 
+        setTitle("Пробег ТС за период");
+
         tabLayoutTrack = (TabLayout) findViewById(R.id.tabLayoutTrack);
         viewPagerTrack = (ViewPager) findViewById(R.id.viewPagertrack);
         tabItemList = (TabItem) findViewById(R.id.tabItemList);
@@ -106,7 +108,7 @@ public class TrackViewActivity extends AppCompatActivity {
 
             boolean wasError = false; // для проверки наличия ошибки
 
-            JsonObject jsonObject = NetworkUtils.getJsonTracks(invnom, datebeg, dateend);
+            JsonObject jsonObject = NetworkUtils.getJsonTracks(this, invnom, datebeg, dateend);
             if (jsonObject == null) {
                 Toast.makeText(this, "Ошибка, не получен ответ от сервера, пробеги не загружены", Toast.LENGTH_SHORT).show();
                 wasError = true;
