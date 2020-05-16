@@ -29,62 +29,87 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextDateBeg"
-            android:layout_width="200dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorCardTitle"
-            android:ems="10"
-            android:enabled="false"
-            android:hint="Дата начала"
-            android:inputType="date"
-            android:textColor="@color/colorTextPrimary"
-            app:layout_constraintEnd_toStartOf="@+id/buttonSetBeg"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTransportInfo" />
-
-        <Button
-            android:id="@+id/buttonSetBeg"
+        <LinearLayout
+            android:id="@+id/linearLayoutDateBeg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:onClick="onClickDateBeg"
-            android:text="&lt;-- Дата нач"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editTextDateBeg"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTransportInfo" />
-
-        <EditText
-            android:id="@+id/editTextDateEnd"
-            android:layout_width="200dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorCardTitle"
-            android:ems="10"
-            android:enabled="false"
-            android:hint="Дата окончания"
-            android:inputType="date"
-            android:textColor="@color/colorTextPrimary"
-            app:layout_constraintEnd_toStartOf="@+id/buttonSetEnd"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDateBeg" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTransportInfo">
 
-        <Button
-            android:id="@+id/buttonSetEnd"
+            <EditText
+                android:id="@+id/editTextDateBeg"
+                android:layout_width="200dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorCardTitle"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="center"
+                android:hint="Дата начала"
+                android:inputType="date"
+                android:textColor="@color/colorTextPrimary"
+                app:layout_constraintEnd_toStartOf="@+id/buttonSetBeg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonSetBeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDateBeg"
+                android:text="&lt;--"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/editTextDateBeg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDateEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:onClick="onClickDateEnd"
-            android:text="&lt;-- Дата кон"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editTextDateEnd"
-            app:layout_constraintTop_toBottomOf="@+id/buttonSetBeg" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutDateBeg">
+
+            <EditText
+                android:id="@+id/editTextDateEnd"
+                android:layout_width="200dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorCardTitle"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="center"
+                android:hint="Дата окончания"
+                android:inputType="date"
+                android:textColor="@color/colorTextPrimary"
+                app:layout_constraintEnd_toStartOf="@+id/buttonSetEnd"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonSetEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:onClick="onClickDateEnd"
+                android:text="&lt;--"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/editTextDateEnd"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
         <DatePicker
             android:id="@+id/datePicker"
@@ -93,19 +118,20 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@color/colorCardTitle"
+            android:calendarTextColor="@color/colorTextPrimary"
             android:calendarViewShown="true"
             android:spinnersShown="false"
-            android:calendarTextColor="@color/colorTextPrimary"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDateEnd" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutDateEnd" />
 
 
         <Button
             android:id="@+id/buttonViewProbeg"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:onClick="onClickViewProbeg"
             android:text="Показать пробег"
             app:layout_constraintEnd_toEndOf="parent"

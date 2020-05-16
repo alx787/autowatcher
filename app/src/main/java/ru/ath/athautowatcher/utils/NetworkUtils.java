@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
@@ -34,6 +35,8 @@ public class NetworkUtils {
     public static JsonObject getJsonAllObjects(Context ctxt) {
 //        String url = BASE_URL + URL_GET_ALL_OBJS;
         String url = getServerSite(ctxt) + URL_GET_ALL_OBJS;
+
+        //Log.i("myres", url);
         return getJsonFromNetwork(ctxt, url);
     }
 
@@ -125,6 +128,16 @@ public class NetworkUtils {
                 connection.setDoInput(true);
 
                 Log.i("myres", connection.getURL().getPath() + " - " + connection.getURL().getQuery());
+
+                // установим данные для авторизации
+                String postData = getAuthPostData(ctxt, url);
+                try {
+                    OutputStream os = connection.getOutputStream();
+                    byte[] input = postData.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                } catch (Exception e) {
+
+                }
 
                 connection.setConnectTimeout(5000);
 

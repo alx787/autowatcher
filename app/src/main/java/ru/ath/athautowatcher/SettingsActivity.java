@@ -12,18 +12,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import ru.ath.athautowatcher.utils.Globals;
+import ru.ath.athautowatcher.utils.NetworkUtils;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private TextView textViewLogin;
-    private TextView textViewPassword;
-    private TextView textViewServer;
-    private TextView textViewPort;
+//    private TextView textViewLogin;
+//    private TextView textViewPassword;
+//    private TextView textViewServer;
+//    private TextView textViewPort;
 
     private EditText editTextLogin;
     private EditText editTextPassword;
@@ -107,6 +110,34 @@ public class SettingsActivity extends AppCompatActivity {
 //            Log.i("myres", getHash(savedValue));
         }
 
+        editor.apply();
+
+        // тут надо получить токен от сервера
+        JsonObject jsonObject = NetworkUtils.getAuthInfo(this);
+        if (jsonObject == null) {
+            Toast.makeText(this, "Ошибка при синхронизации с сервером, не получен ответ от сервера", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!jsonObject.has("status")) {
+            Toast.makeText(this, "Ошибка при синхронизации с сервером, ответ от сервера не содержит данных авторизации", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!jsonObject.get("status").getAsString().equals("ok")) {
+            Toast.makeText(this, "Ошибка при синхронизации с сервером", Toast.LENGTH_SHORT).show();
+            if (jsonObject.has("description")) {
+                Toast.makeText(this, jsonObject.get("description").getAsString(), Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+
+        JsonObject contentJsonObj = jsonObject.get("content").getAsJsonObject();
+        String userid = contentJsonObj.get("userid").getAsString();
+        String token = contentJsonObj.get("token").getAsString();
+
+        editor.putString(Globals.SRV_USERID, userid);
+        editor.putString(Globals.SRV_TOKEN, token);
         editor.apply();
 
         Intent intent = new Intent(this, MainActivity.class);
