@@ -1,5 +1,6 @@
 package ru.ath.athautowatcher;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -74,7 +76,7 @@ public class TrackListFragment extends Fragment {
     ///////////////////////////////////////
     // создаем и наполняем элемент cardView
     ///////////////////////////////////////
-    private CardView getCardViewTrack(int cnt, String datebeg, String dateend, String duration, String motohours,String probeg, String fuelRate) {
+    private CardView getCardViewTrack(int cnt, final String datebeg, final String dateend, String duration, String motohours, String probeg, String fuelRate) {
         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         CardView cardViewTrack = new CardView(getActivity());
@@ -118,6 +120,15 @@ public class TrackListFragment extends Fragment {
         linearLayoutTrack.addView(textViewMotohours, lParams);
         linearLayoutTrack.addView(textViewProbeg, lParams);
         linearLayoutTrack.addView(textViewRashod, lParams);
+
+        cardViewTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "c " + datebeg + " по " + dateend, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), TrackSingleMapActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return cardViewTrack;
 
