@@ -20,13 +20,15 @@ import java.util.concurrent.ExecutionException;
 import ru.ath.athautowatcher.MainActivity;
 
 public class NetworkUtils {
-    private static final String BASE_URL = "http://192.168.1.2:8080/restprox/";
+    private static final String BASE_URL = "http://192.168.1.122:8080/restprox/";
 
     private static final String URL_CONTEXT = "/restprox/";
     private static final String URL_GET_ALL_OBJS = "wl/getobject/db/all";
     private static final String URL_GET_LASTPOS = "track/getlastpos/__invnom__";
     private static final String URL_GET_TRACKS = "track/gettrack/__invnom__/__datebeg__/__dateend__";
     private static final String URL_GET_NEWAUTH = "info/newauth";
+    private static final String URL_GET_DETAIL_TRACK = "track/mars/__invnom__/__datebeg__/__dateend__";
+
 
 
     //////////////////////////////////////////
@@ -59,6 +61,14 @@ public class NetworkUtils {
         String url = getServerSite(ctxt) + URL_GET_NEWAUTH;
         return getJsonFromNetwork(ctxt, url);
     }
+
+    public static JsonObject getJsonDetailTrack(Context ctxt, String invnom, String datebeg, String dateend) {
+        String url = getServerSite(ctxt) + URL_GET_DETAIL_TRACK.replace("__invnom__", invnom);
+        url = url.replace("__datebeg__", datebeg);
+        url = url.replace("__dateend__", dateend);
+        return getJsonFromNetwork(ctxt, url);
+    }
+
 
 
     //////////////////////////////////////////

@@ -2,62 +2,116 @@ package ru.ath.athautowatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.yandex.mapkit.MapKitFactory;
-import com.yandex.mapkit.geometry.LinearRing;
 import com.yandex.mapkit.geometry.Point;
-import com.yandex.mapkit.geometry.Polygon;
+import com.yandex.mapkit.geometry.Polyline;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.map.MapObjectCollection;
-import com.yandex.mapkit.map.PolygonMapObject;
-import com.yandex.mapkit.map.SublayerManager;
+import com.yandex.mapkit.map.PlacemarkMapObject;
+import com.yandex.mapkit.map.PolylineMapObject;
 import com.yandex.mapkit.mapview.MapView;
+import com.yandex.runtime.image.ImageProvider;
+import com.yandex.runtime.ui_view.ViewProvider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ru.ath.athautowatcher.utils.Globals;
+import ru.ath.athautowatcher.utils.NetworkUtils;
+import ru.ath.athautowatcher.utils.TrackElement;
+
 
 public class TrackSingleMapActivity extends AppCompatActivity {
 
     private MapView trackSingleMapview;
-    private SublayerManager sublayerManager;
     private MapObjectCollection mapObjects;
-
-    private final String MAPKIT_API_KEY = Globals.MAPKIT_API_KEY;
-    private final Point CAMERA_TARGET = new Point(59.951029, 30.317181);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        MapKitFactory.setApiKey(MAPKIT_API_KEY);
+        MapKitFactory.setApiKey(Globals.MAPKIT_API_KEY);
         MapKitFactory.initialize(this);
 
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_single_map);
+        super.onCreate(savedInstanceState);
 
-        trackSingleMapview = (MapView) findViewById(R.id.trackSingleMapview);
+        setTitle("Пробег подробно");
 
-        trackSingleMapview.getMap().move(
-                new CameraPosition(CAMERA_TARGET, 16.0f, 0.0f, 45.0f));
+        trackSingleMapview = (MapView)findViewById(R.id.trackSingleMapview);
+        mapObjects = trackSingleMapview.getMap().getMapObjects().addCollection();
 
-        sublayerManager = trackSingleMapview.getMap().getSublayerManager();
-        mapObjects = trackSingleMapview.getMap().getMapObjects();
+        Intent intent = getIntent();
+        if (intent != null) {
+            String invnom = null;
+            String datebeg = null;
+            String dateend = null;
 
+            if (intent.hasExtra("invnom")) {
+                invnom = intent.getStringExtra("invnom");
+                if (invnom.isEmpty()) {
+                    invnom = null;
+                }
+            }
 
-        ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(59.949911, 30.316560));
-        points.add(new Point(59.949121, 30.316008));
-        points.add(new Point(59.949441, 30.318132));
-        points.add(new Point(59.950075, 30.316915));
-        points.add(new Point(59.949911, 30.316560));
-        Polygon polygon = new Polygon(new LinearRing(points), new ArrayList<LinearRing>());
-        final PolygonMapObject polygonMapObject = mapObjects.addPolygon(polygon);
-        polygonMapObject.setFillColor(0x3300FF00);
-        polygonMapObject.setStrokeWidth(3.0f);
-        polygonMapObject.setStrokeColor(Color.GREEN);
+            if (intent.hasExtra("datebeg")) {
+                datebeg = intent.getStringExtra("datebeg");
+                if (datebeg.isEmpty()) {
+                    datebeg = null;
+                }
+            }
 
+            if (intent.hasExtra("dateend")) {
+                dateend = intent.getStringExtra("dateend");
+                if (dateend.isEmpty()) {
+                    dateend = null;
+                }
+            }
+
+            if (invnom == null || datebeg == null || dateend == null) {
+                Toast.makeText(this, "Ошибка при передаче параметров", Toast.LENGTH_SHORT).show();
+                trackSingleMapview.getMap().move(new CameraPosition(new Point(Globals.ATH_LAT, Globals.ATH_LON), 15.0f, 0.0f, 0.0f));
+
+                return;
+            }
+
+            JsonObject jsonObject = NetworkUtils.getJsonDetailTrack(this, invnom, datebeg, dateend);
+            if (jsonObject != null) {
+                JsonArray contentArr = jsonObject.get("content").getAsJsonArray();
+
+                // используем вспомогательный объект
+                List<TrackElement> trackElements = new ArrayList<>();
+
+                for  (int i = 0; i < contentArr.size(); i++) {
+                    JsonObject message = contentArr.get(i).getAsJsonObject();
+
+                    TrackElement trackElement = new TrackElement();
+                    trackElement.setTrackbegx(message.get("x").getAsString());
+                    trackElement.setTrackbegy(message.get("y").getAsString());
+                    trackElement.setMaxspeed(message.get("speed").getAsString());
+                    trackElement.setTracktime(message.get("time").getAsString());
+
+                    trackElements.add(trackElement);
+                }
+
+                if (trackElements.size() > 0) {
+                    createMapObjects(trackElements);
+                } else {
+                    Toast.makeText(this, "Нет данных по пробегу", Toast.LENGTH_SHORT).show();
+                    trackSingleMapview.getMap().move(new CameraPosition(new Point(Globals.ATH_LAT, Globals.ATH_LON), 15.0f, 0.0f, 0.0f));
+                    return;
+                }
+            }
+        }
     }
 
     @Override
@@ -73,4 +127,86 @@ public class TrackSingleMapActivity extends AppCompatActivity {
         MapKitFactory.getInstance().onStart();
         trackSingleMapview.onStart();
     }
+
+    private void createMapObjects(List<TrackElement> trackElements) {
+
+//        "y":<double>,		/* широта */  lat
+//        "x":<double>,		/* долгота */ long
+
+        ArrayList<Point> polylinePoints = new ArrayList<>();
+
+        double dX = 0; // lon долгота
+        double dY = 0; // lat широта
+
+        int i = 0;
+
+        for (TrackElement oneTrack : trackElements) {
+            try {
+                dX = Double.valueOf(oneTrack.getTrackbegx());
+                dY = Double.valueOf(oneTrack.getTrackbegy());
+            } catch (Exception e) {
+                continue;
+            }
+
+            polylinePoints.add(new Point(dY, dX));
+
+
+            // расставим временные метки
+            if (i == 0) {
+                setPointOnMap(oneTrack.getTracktime(), dX, dY);
+            }
+
+            i++;
+
+            if (i > 100) {
+                i = 0;
+            }
+        }
+
+        // метку на последней точке
+        setPointOnMap(trackElements.get(trackElements.size() - 1).getTracktime(), dX, dY);
+
+
+        PolylineMapObject polyline = mapObjects.addPolyline(new Polyline(polylinePoints));
+//        Log.i("myres", String.valueOf(polyline.getStrokeWidth()));
+        polyline.setStrokeWidth(3.0f);
+        polyline.setStrokeColor(Color.GREEN);
+        polyline.setZIndex(100.0f);
+
+        trackSingleMapview.getMap().move(new CameraPosition(new Point(dY, dX), 15.0f, 0.0f, 0.0f));
+
+    }
+
+    private void setPointOnMap(String period, double dX, double dY) {
+
+//        double dX = 0; // lon долгота
+//        double dY = 0; // lat широта
+
+//        try {
+//            dX = Double.valueOf(sX);
+//            dY = Double.valueOf(sY);
+//        } catch (Exception e) {
+//            return;
+//        }
+
+//        Point(double lat, double long)
+
+        trackSingleMapview.getMap().getMapObjects().addPlacemark(new Point(dY, dX), ImageProvider.fromResource(this, R.drawable.map_marker_icon_32_32));
+
+
+        /////////////////////////////////////////////////
+        /////////////////////////////////////////////////
+        final TextView textView = new TextView(this);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        textView.setLayoutParams(params);
+
+        textView.setTextColor(Color.RED);
+        textView.setText(period + "\n\n\n\n\n");
+
+        final ViewProvider viewProvider = new ViewProvider(textView);
+        final PlacemarkMapObject viewPlacemark = mapObjects.addPlacemark(new Point(dY, dX), viewProvider);
+        viewPlacemark.setView(viewProvider);
+
+    }
+
 }

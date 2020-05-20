@@ -14,4 +14,8 @@ public class Globals {
     public static final String SRV_ADDRESS = "server";
     public static final String SRV_PORT = "port";
 
+    public static final double ATH_LAT = 58.610018; // y широта
+    public static final double ATH_LON = 49.602077; // x долгота
+
+
 }

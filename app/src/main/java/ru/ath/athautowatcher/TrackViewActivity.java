@@ -26,6 +26,8 @@ public class TrackViewActivity extends AppCompatActivity {
     private TabItem tabItemList, tabItemMap;
     private MyPagerAdapter pagerAdapter;
 
+    // инвентарный номер
+    private String invnom_for_map;
     // записи треков
     private ArrayList<TrackElement> trackArr;
     // переменные для хранения итоговых данных
@@ -136,6 +138,8 @@ public class TrackViewActivity extends AppCompatActivity {
                 // тут разбор json ответа
                 JsonObject contentJsonObj = jsonObject.get("content").getAsJsonObject();
 
+                invnom_for_map = invnom;
+
                 duration = "длительность: " + contentJsonObj.get("duration").getAsString();
                 fuelrate = "расход топлива по нормам: " + contentJsonObj.get("fuelrate").getAsString();;
                 motohours = "моточасы: " + contentJsonObj.get("motohours").getAsString();
@@ -193,6 +197,10 @@ public class TrackViewActivity extends AppCompatActivity {
 
     public ArrayList<TrackElement> getTrackArr() {
         return trackArr;
+    }
+
+    public String getInvnom() {
+        return invnom_for_map;
     }
 
     public String getDuration() {

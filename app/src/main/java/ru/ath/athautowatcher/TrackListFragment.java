@@ -126,6 +126,10 @@ public class TrackListFragment extends Fragment {
             public void onClick(View v) {
 //                Toast.makeText(getActivity(), "c " + datebeg + " по " + dateend, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), TrackSingleMapActivity.class);
+                intent.putExtra("invnom", ((TrackViewActivity) getActivity()).getInvnom());
+                intent.putExtra("datebeg", datebeg);
+                intent.putExtra("dateend", dateend);
+
                 startActivity(intent);
             }
         });
