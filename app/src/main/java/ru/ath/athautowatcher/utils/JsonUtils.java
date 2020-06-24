@@ -47,6 +47,8 @@ public class JsonUtils {
         tr.setAtbase(jsonObject.get("atbase").getAsString());
         tr.setAtres(jsonObject.get("atres").getAsString());
 
+        tr.setFavor(0);
+
         return tr;
     }
 }

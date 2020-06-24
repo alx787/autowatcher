@@ -129,34 +129,6 @@ public class NetworkUtils {
         return result;
     }
 
-    // ssl socket factory для защищенных соединений
-    private SSLContext getSslContext(Context ctxt) {
-        try {
-            // Get an instance of the Bouncy Castle KeyStore format
-            KeyStore trusted = KeyStore.getInstance("BKS");
-            // Get the raw resource, which contains the keystore with
-            // your trusted certificates (root and any intermediate certs)
-            InputStream in = ctxt.getResources().openRawResource(R.raw.keystore);
-            try {
-                // Initialize the keystore with the provided trusted certificates
-                // Also provide the password of the keystore
-                trusted.load(in, "mystorepass".toCharArray());
-            } finally {
-                in.close();
-            }
-
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            tmf.init(trusted);
-
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, tmf.getTrustManagers(), null);
-
-            return sslContext;
-        } catch (Exception e) {
-            throw new AssertionError(e);
-        }
-    }
-
 
     //////////////////////////////////////////
     // асинхронный запрос
@@ -175,6 +147,8 @@ public class NetworkUtils {
             HttpsURLConnection connection = null;
             try {
 
+                ///////////////////////////////////////////////
+                // получим ключи для защищенных соединений с сервером
                 KeyStore trusted = KeyStore.getInstance("BKS");
                 // Get the raw resource, which contains the keystore with
                 // your trusted certificates (root and any intermediate certs)
@@ -187,8 +161,7 @@ public class NetworkUtils {
 
                 SSLContext sslContext = SSLContext.getInstance("TLS");
                 sslContext.init(null, tmf.getTrustManagers(), null);
-
-
+                ///////////////////////////////////////////////
 
 
                 connection = (HttpsURLConnection) new URL(url).openConnection();

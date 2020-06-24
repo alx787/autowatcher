@@ -29,12 +29,13 @@ public class Transport {
     private String atlocation;
     private String atbase;
     private String atres;
+    private int favor;
 
     @Ignore
     public Transport() {
     }
 
-    public Transport(int id, String wlnid, String wlnnm, String vehicletype, String grossvehicleweight, String registrationplate, String vin, String brand, String model, String prodyear, String color, String enginemodel, String primaryfueltype, String enginepower, String atinvnom, String atinstalldate, String atwheelformula, String atdepartment, String atautocol, String atlocation, String atbase, String atres) {
+    public Transport(int id, String wlnid, String wlnnm, String vehicletype, String grossvehicleweight, String registrationplate, String vin, String brand, String model, String prodyear, String color, String enginemodel, String primaryfueltype, String enginepower, String atinvnom, String atinstalldate, String atwheelformula, String atdepartment, String atautocol, String atlocation, String atbase, String atres, int favor) {
         this.id = id;
         this.wlnid = wlnid;
         this.wlnnm = wlnnm;
@@ -57,6 +58,7 @@ public class Transport {
         this.atlocation = atlocation;
         this.atbase = atbase;
         this.atres = atres;
+        this.favor = favor;
     }
 
     public int getId() {
@@ -233,5 +235,13 @@ public class Transport {
 
     public void setAtres(String atres) {
         this.atres = atres;
+    }
+
+    public int getFavor() {
+        return favor;
+    }
+
+    public void setFavor(int favor) {
+        this.favor = favor;
     }
 }
