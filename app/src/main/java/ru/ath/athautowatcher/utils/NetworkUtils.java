@@ -15,9 +15,22 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.util.concurrent.ExecutionException;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
+
 import ru.ath.athautowatcher.MainActivity;
+import ru.ath.athautowatcher.R;
 
 public class NetworkUtils {
     private static final String BASE_URL = "http://192.168.1.122:8080/restprox/";
@@ -83,7 +96,9 @@ public class NetworkUtils {
             return null;
         }
 
-        return "http://" + sAddress + ":" + sPort + URL_CONTEXT;
+//        return "http://" + sAddress + ":" + sPort + URL_CONTEXT;
+        return "https://" + sAddress + ":" + sPort + URL_CONTEXT;
+
     }
 
     private static String getAuthPostData(Context ctxt, String url) {
@@ -114,6 +129,35 @@ public class NetworkUtils {
         return result;
     }
 
+    // ssl socket factory для защищенных соединений
+    private SSLContext getSslContext(Context ctxt) {
+        try {
+            // Get an instance of the Bouncy Castle KeyStore format
+            KeyStore trusted = KeyStore.getInstance("BKS");
+            // Get the raw resource, which contains the keystore with
+            // your trusted certificates (root and any intermediate certs)
+            InputStream in = ctxt.getResources().openRawResource(R.raw.keystore);
+            try {
+                // Initialize the keystore with the provided trusted certificates
+                // Also provide the password of the keystore
+                trusted.load(in, "mystorepass".toCharArray());
+            } finally {
+                in.close();
+            }
+
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            tmf.init(trusted);
+
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, tmf.getTrustManagers(), null);
+
+            return sslContext;
+        } catch (Exception e) {
+            throw new AssertionError(e);
+        }
+    }
+
+
     //////////////////////////////////////////
     // асинхронный запрос
     //////////////////////////////////////////
@@ -128,9 +172,40 @@ public class NetworkUtils {
             String url = (String) objects[1];
 
             JsonObject resJson = null;
-            HttpURLConnection connection = null;
+            HttpsURLConnection connection = null;
             try {
-                connection = (HttpURLConnection) new URL(url).openConnection();
+
+                KeyStore trusted = KeyStore.getInstance("BKS");
+                // Get the raw resource, which contains the keystore with
+                // your trusted certificates (root and any intermediate certs)
+                InputStream in = ctxt.getResources().openRawResource(R.raw.keystore);
+
+                trusted.load(in, "mystorepass".toCharArray());
+
+                TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                tmf.init(trusted);
+
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(null, tmf.getTrustManagers(), null);
+
+
+
+
+                connection = (HttpsURLConnection) new URL(url).openConnection();
+                connection.setSSLSocketFactory(sslContext.getSocketFactory());
+
+                connection.setHostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        //Log.i("myres", "hostnsne " + hostname + " from ssl " + session.getPeerHost());
+                        if (hostname.equals(session.getPeerHost())) {
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+
+
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                 connection.setRequestProperty("Accept", "application/json");
@@ -172,7 +247,7 @@ public class NetworkUtils {
 
                     resJson = JsonParser.parseString(result.toString()).getAsJsonObject();
                 }
-            } catch (IOException e) {
+            } catch (IOException | KeyStoreException | CertificateException | NoSuchAlgorithmException | KeyManagementException e) {
                 e.printStackTrace();
             } finally {
                 if (connection != null) {
