@@ -44,6 +44,7 @@ public class FilterActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         final List<String> autocolsList = viewModel.getAllAutoCols();
+//        autocolsList.add("-");
 
         final ArrayAdapter<String> spinnerAutocolArrayAdapter = new ArrayAdapter<String>(this, R.layout.autocol_filter_spinner_item, autocolsList);
         spinnerAutocolArrayAdapter.setDropDownViewResource(R.layout.autocol_filter_spinner_item);
@@ -79,7 +80,6 @@ public class FilterActivity extends AppCompatActivity {
             if (intent.hasExtra("autocol")) {
                 String selectedValue = intent.getStringExtra("autocol");
                 if (!selectedValue.equals("")) {
-//                    ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerAutocol.getAdapter();
                     spinnerAutocol.setSelection(spinnerAutocolArrayAdapter.getPosition(selectedValue));
                 }
             }
@@ -121,5 +121,14 @@ public class FilterActivity extends AppCompatActivity {
         final ArrayAdapter<String> spinnerDepartsArrayAdapter = new ArrayAdapter<String>(FilterActivity.this, R.layout.autocol_filter_spinner_item, departList);
         spinnerDepartsArrayAdapter.setDropDownViewResource(R.layout.autocol_filter_spinner_item);
         spinnerDepartment.setAdapter(spinnerDepartsArrayAdapter);
+    }
+
+    public void onClickClearAutocol(View view) {
+        spinnerAutocol.setSelection(-1);
+    }
+
+    public void onClickClearDepartment(View view) {
+//        setDepartArrayAdapder();
+        spinnerDepartment.setSelection(-1);
     }
 }

@@ -92,6 +92,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAutocol" />
 
+    <Button
+        android:id="@+id/buttonClearAutocol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Очистить"
+        android:onClick="onClickClearAutocol"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAutocol" />
+
+
     <TextView
         android:id="@+id/textViewDepartment"
         android:layout_width="0dp"
@@ -103,7 +115,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAutocol" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonClearAutocol" />
 
     <Spinner
         android:id="@+id/spinnerDepartment"
@@ -116,6 +128,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
 
     <Button
+        android:id="@+id/buttonClearDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Очистить"
+        android:onClick="onClickClearDepartment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDepartment" />
+
+    <Button
         android:id="@+id/buttonOk"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -124,6 +147,8 @@
         android:text="@android:string/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerDepartment" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonClearDepartment" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

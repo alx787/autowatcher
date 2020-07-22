@@ -14,6 +14,10 @@ public class JsonUtils {
              return result;
         }
 
+        if (!jsonObject.has("content")) {
+            return null;
+        }
+
         JsonArray jsonArray = jsonObject.get("content").getAsJsonArray();
         for(int i = 0; i < jsonArray.size(); i++) {
             JsonObject trJsonObj = jsonArray.get(i).getAsJsonObject();
