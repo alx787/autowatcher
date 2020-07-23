@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,6 +28,9 @@ public class FilterActivity extends AppCompatActivity {
     private Spinner spinnerAutocol;
     private Spinner spinnerDepartment;
 
+    private CheckBox checkBoxUseAutocol;
+    private CheckBox checkBoxUseDepartment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,10 @@ public class FilterActivity extends AppCompatActivity {
         spinnerAutocol = (Spinner) findViewById(R.id.spinnerAutocol);
         spinnerDepartment = (Spinner) findViewById(R.id.spinnerDepartment);
 
-          // заполним спиннер автоколонны
+        checkBoxUseAutocol = (CheckBox) findViewById(R.id.checkBoxUseAutocol);
+        checkBoxUseDepartment = (CheckBox) findViewById(R.id.checkBoxUseDepartment);
+
+        // заполним спиннер автоколонны
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         final List<String> autocolsList = viewModel.getAllAutoCols();
@@ -108,8 +115,17 @@ public class FilterActivity extends AppCompatActivity {
         intent.putExtra("setfilter", "");
         intent.putExtra("regnom", editTextRegnom.getText().toString());
         intent.putExtra("invnom", editTextInvnom.getText().toString());
-        intent.putExtra("autocol", spinnerAutocol.getSelectedItem().toString());
-        intent.putExtra("department", spinnerDepartment.getSelectedItem().toString());
+        if (checkBoxUseAutocol.isChecked()) {
+            intent.putExtra("autocol", spinnerAutocol.getSelectedItem().toString());
+        } else {
+            intent.putExtra("autocol", "");
+        };
+
+        if (checkBoxUseDepartment.isChecked()) {
+            intent.putExtra("department", spinnerDepartment.getSelectedItem().toString());
+        } else {
+            intent.putExtra("department", "");
+        };
 
         startActivity(intent);
     }
@@ -123,12 +139,4 @@ public class FilterActivity extends AppCompatActivity {
         spinnerDepartment.setAdapter(spinnerDepartsArrayAdapter);
     }
 
-    public void onClickClearAutocol(View view) {
-        spinnerAutocol.setSelection(-1);
-    }
-
-    public void onClickClearDepartment(View view) {
-//        setDepartArrayAdapder();
-        spinnerDepartment.setSelection(-1);
-    }
-}
+ }

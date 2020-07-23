@@ -92,17 +92,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAutocol" />
 
-    <Button
-        android:id="@+id/buttonClearAutocol"
+    <CheckBox
+        android:id="@+id/checkBoxUseAutocol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Очистить"
-        android:onClick="onClickClearAutocol"
+        android:background="#6688B0"
+        android:text="использовать"
+        android:textColor="#C2E7D9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerAutocol" />
-
 
     <TextView
         android:id="@+id/textViewDepartment"
@@ -115,7 +115,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonClearAutocol" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxUseAutocol" />
 
     <Spinner
         android:id="@+id/spinnerDepartment"
@@ -127,16 +127,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDepartment" />
 
-    <Button
-        android:id="@+id/buttonClearDepartment"
+    <CheckBox
+        android:id="@+id/checkBoxUseDepartment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Очистить"
-        android:onClick="onClickClearDepartment"
+        android:background="#6688B0"
+        android:text="использовать"
+        android:textColor="#C2E7D9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDepartment" />
+
 
     <Button
         android:id="@+id/buttonOk"
@@ -147,7 +149,7 @@
         android:text="@android:string/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonClearDepartment" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxUseDepartment" />
 
 
 
